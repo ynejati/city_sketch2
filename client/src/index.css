@@ -7,3 +7,7 @@
 .navbar-form{
   padding-top: 4px;
 }
+
+.panel-body {
+  padding: 0px;
+}

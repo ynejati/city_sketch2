@@ -3,17 +3,36 @@
  */
 import React from 'react'
 import { Accordion, Panel } from 'react-bootstrap'
-// import s from './TwitterPanel.css'
+import Tweet from './components/Tweet'
+import './TwitterPanel.css'
 
 class TwitterPanel extends React.Component {
-  render () {
+
+  render() {
+    const tweets = this.props.tweets
+
     return (
-      <Accordion>
-        <Panel header='Twitter Panel'>
-          {/* Populate with feed based on search query */}
-          Twitter feed goes here
-        </Panel>
-      </Accordion>
+      <div className="twitter-panel">
+        <Accordion>
+          <Panel header='Twitter Panel'>
+            <div className="twitter-timeline">
+            {
+              tweets.map((cheep) => (
+                <Tweet
+                  userName={cheep['user_name']}
+                  screenName={cheep['screen_name']}
+                  text={cheep['text']}
+                  hashTags={cheep['hashtags']}
+                  date={cheep['date']}
+                  imageUrl={cheep['image_url']}
+                  profileImageUrl={cheep['profile_image_url']}
+                />
+              ))
+            }
+            </div>
+          </Panel>
+        </Accordion>
+      </div>
     )
   }
 }

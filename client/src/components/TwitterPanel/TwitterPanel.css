@@ -1,0 +1,9 @@
+.twitter-panel {
+    /*height: 500px;*/
+}
+
+.twitter-timeline {
+    height: 500px;
+    overflow-y: scroll;
+    align-content: center;
+}

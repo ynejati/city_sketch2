@@ -3,23 +3,25 @@
  */
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { Navbar, Button, FormControl, FormGroup } from 'react-bootstrap'
+import { Navbar, Button, FormControl, FormGroup, Glyphicon } from 'react-bootstrap'
 import headerLogo from './city_sketch2_navbar_logo.png'
 import s from './Header.css'
 
 class Header extends React.Component {
-    state = {
-      city: ''
-    }
+  state = {
+    city: ''
+  }
+
   handleInputChange = (event) => {
     this.setState({city: event.target.value})
-    // this.props.onInputChange(this.state.city)
   }
-  handleSubmit = (event) => {
+
+  onSearchSubmit = (event) => {
+    const city = this.state.city
+    this.props.onSearchFormSubmit(city)
+    this.setState({city: ''})
+    event.target.reset()
     event.preventDefault()
-    this.props.onSearchSubmit(this.state.city)
-    ReactDOM.findDOMNode(this.refs.form).value = ''
   }
 
   render () {
@@ -33,13 +35,16 @@ class Header extends React.Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.onSearchSubmit}>
               <Navbar.Form pullRight>
                 <FormGroup controlId='search'>
-                  <FormControl ref='form' onChange={this.handleInputChange} type='text' placeholder='Search available cities' />
+                  <FormControl onChange={this.handleInputChange} autoComplete='on' type='text'
+                               placeholder='Search cities....' />
                 </FormGroup>
                 {' '}
-                <Button bsStyle='success' type='submit'>Submit</Button>
+                <Button bsStyle='success' type='submit'>
+                  <Glyphicon glyph="search" />
+                </Button>
               </Navbar.Form>
             </form>
           </Navbar.Collapse>

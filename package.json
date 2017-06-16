@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "babel-node start-server.js",
+    "server": "babel-node start-server.js data/*.js",
     "client": "babel-node start-client.js"
   },
   "devDependencies": {

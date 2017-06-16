@@ -3,11 +3,11 @@
  */
 const express = require('express')
 const fs = require('fs')
-const twiiter = require('./data/Twitter/Twitter')
+import Twitter from './data/Twitter/Twitter'
 
 const app = express()
 
-app.set('port', (process.env.API_PORT || 3001))
+app.set('port', (3001))
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('public/build'))
@@ -15,14 +15,14 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get ('/api/city', (req, res) => {
   const param = req.query.q
-
   if (!param) {
     res.json({
       error: 'Missing required parameter `q`',
     })
-    return
+  } else {
+    const tweets = Twitter.search(param)
+    res.json(tweets)
   }
-  res.json(twiiter(param))
 })
 
 export default app

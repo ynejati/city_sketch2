@@ -3,7 +3,8 @@ function search(query, res) {
   console.log('Search in Client.js HIT')
   return fetch(`/api/city?q=${query}`, {
     accept: 'application/json',
-  }).then(res)
+  }).then(checkStatus)
+    .then(res)
 }
 
 function checkStatus(response) {

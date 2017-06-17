@@ -15,19 +15,7 @@ class TwitterPanel extends React.Component {
         <Accordion>
           <Panel header='Twitter Panel'>
             <div className="twitter-timeline">
-              {
-                tweets.map((cheep) => (
-                  <Tweet
-                    userName={cheep['user_name']}
-                    screenName={cheep['screen_name']}
-                    text={cheep['text']}
-                    hashTags={cheep['hashtags']}
-                    date={cheep['date']}
-                    imageUrl={cheep['image_url']}
-                    profileImageUrl={cheep['profile_image_url']}
-                  />
-                ))
-              }
+
             </div>
           </Panel>
         </Accordion>
@@ -39,5 +27,17 @@ class TwitterPanel extends React.Component {
 export default TwitterPanel
 
 /*
-
+ {
+ tweets.map((cheep) => (
+ <Tweet
+ userName={cheep['user_name']}
+ screenName={cheep['screen_name']}
+ text={cheep['text']}
+ hashTags={cheep['hashtags']}
+ date={cheep['date']}
+ imageUrl={cheep['image_url']}
+ profileImageUrl={cheep['profile_image_url']}
+ />
+ ))
+ }
  */

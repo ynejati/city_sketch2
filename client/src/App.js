@@ -11,6 +11,7 @@ import TwitterPanel from './components/TwitterPanel/TwitterPanel'
 import WeatherPanel from './components/WeatherPanel/WeatherPanel'
 import Client from './Client'
 
+
 class App extends React.Component {
 
   state = {

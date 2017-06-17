@@ -1,5 +1,4 @@
 import TwitterAPI from 'twitter'
-import { List } from 'immutable'
 
 const twitter = new TwitterAPI({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -9,7 +8,8 @@ const twitter = new TwitterAPI({
 })
 
 function search(query) {
-  const selectedTweets = List()
+  // TODO import { List } from 'immutable'
+  let selectedTweets = []
   twitter.get('search/tweets', {q: query}, (error, tweets) => {
 
     if (error) {
@@ -23,7 +23,7 @@ function search(query) {
             chirp.date = tweet['created_at']
             chirp.text = tweet['text']
 
-            const hashtags = List()
+            const hashtags = []
             const entities = tweet.entities || []
             entities.hashtags.forEach((tag) => {
               hashtags.push(tag.text)
@@ -54,8 +54,13 @@ function search(query) {
         }
       )
     }
+    // TODO: Something to do with closure
+    // This will log the selected tweets,...
+    console.log(selectedTweets)
   })
-  return {selected_tweets: selectedTweets}
+  // ...but this will not
+  console.log(selectedTweets)
+  return { selected_tweets: selectedTweets }
 }
 
 const Twitter = {search}

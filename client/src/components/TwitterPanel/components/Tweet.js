@@ -7,8 +7,8 @@ import './Tweet.css'
 
 class Tweet extends React.Component {
 
-  render(){
-    return(
+  render() {
+    return (
       <blockquote className="twitter-tweet">
         <p>{this.props.text}</p>
       </blockquote>

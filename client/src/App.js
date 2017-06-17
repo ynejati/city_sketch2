@@ -16,8 +16,8 @@ class App extends React.Component {
   state = {
     city: '',
     data: {
-      twitter: [],
-      weather: [],
+      twitter: {},
+      weather: {},
     }
   }
 
@@ -27,6 +27,7 @@ class App extends React.Component {
     })
 
     Client.search(city, (tweets) => {
+      console.log(tweets)
       this.setState({
         data: {
           twitter: tweets,

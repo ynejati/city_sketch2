@@ -1,4 +1,5 @@
 import TwitterAPI from 'twitter'
+import { List } from 'immutable'
 
 const twitter = new TwitterAPI({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -8,13 +9,13 @@ const twitter = new TwitterAPI({
 })
 
 function search(query) {
-  twitter.get('search/tweets', {q: query}, function (error, tweets) {
+  const selectedTweets = List()
+  twitter.get('search/tweets', {q: query}, (error, tweets) => {
 
     if (error) {
       console.log(`Something went wrong fetching tweets for the query '${query}': ` + error.json)
     } else {
-      const selectedTweets = []
-      // TODO Immutable
+
       tweets['statuses'].forEach((tweet) => {
           if (tweet.lang === 'en') {
 
@@ -22,7 +23,7 @@ function search(query) {
             chirp.date = tweet['created_at']
             chirp.text = tweet['text']
 
-            const hashtags = []
+            const hashtags = List()
             const entities = tweet.entities || []
             entities.hashtags.forEach((tag) => {
               hashtags.push(tag.text)
@@ -52,10 +53,9 @@ function search(query) {
           }
         }
       )
-      console.log(selectedTweets)
-      return selectedTweets
     }
   })
+  return {selected_tweets: selectedTweets}
 }
 
 const Twitter = {search}

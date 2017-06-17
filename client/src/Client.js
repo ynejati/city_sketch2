@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 function search(query, res) {
+  console.log('Search in Client.js HIT')
   return fetch(`/api/city?q=${query}`, {
     accept: 'application/json',
-  }).then(checkStatus).then(parseJSON).then(res)
+  }).then(res)
 }
 
 function checkStatus(response) {

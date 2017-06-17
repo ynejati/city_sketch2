@@ -8,7 +8,7 @@ const twitter = new TwitterAPI({
 })
 
 function search(query) {
-  twitter.get('search/tweets', {q: query}, function (error, tweets, response) {
+  twitter.get('search/tweets', {q: query}, function (error, tweets) {
 
     if (error) {
       console.log(`Something went wrong fetching tweets for the query '${query}': ` + error.json)
@@ -52,6 +52,7 @@ function search(query) {
           }
         }
       )
+      console.log(selectedTweets)
       return selectedTweets
     }
   })

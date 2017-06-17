@@ -1,12 +1,11 @@
 /* eslint-disable no-undef */
-function search (query, res) {
+function search(query, res) {
   return fetch(`/api/city?q=${query}`, {
-    accept: 'application/json'
-  }).then(checkStatus)
-    .then(res)
+    accept: 'application/json',
+  }).then(checkStatus).then(parseJSON).then(res)
 }
 
-function checkStatus (response) {
+function checkStatus(response) {
   console.log(response.status)
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -19,9 +18,9 @@ function checkStatus (response) {
   }
 }
 
-function parseJSON (response) {
+function parseJSON(response) {
   return response.json();
 }
 
-const Client = { search }
+const Client = {search}
 export default Client

@@ -7,60 +7,61 @@ const twitter = new TwitterAPI({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 })
 
-function search(query) {
+const search = async(query) => {
   // TODO import { List } from 'immutable'
+  let res
+  try {
+    res = await twitter.get('search/tweets', {q: query})
+  } catch (err) {
+
+  }
+  return processTweets(res)
+}
+
+const processTweets = (tweets) => {
   let selectedTweets = []
-  twitter.get('search/tweets', {q: query}, (error, tweets) => {
+  tweets['statuses'].forEach((tweet) => {
+      if (tweet.lang === 'en') {
 
-    if (error) {
-      console.log(`Something went wrong fetching tweets for the query '${query}': ` + error.json)
-    } else {
+        const chirp = {}
+        chirp.date = tweet['created_at']
+        chirp.text = tweet['text']
 
-      tweets['statuses'].forEach((tweet) => {
-          if (tweet.lang === 'en') {
+        const hashtags = []
+        const entities = tweet.entities || []
+        entities.hashtags.forEach((tag) => {
+          hashtags.push(tag.text)
+        })
+        chirp.hashtags = hashtags
 
-            const chirp = {}
-            chirp.date = tweet['created_at']
-            chirp.text = tweet['text']
+        let imageUrl = ''
+        try {
+          imageUrl = tweet.entities.media[0]['media_url']
+        } catch (e) {
 
-            const hashtags = []
-            const entities = tweet.entities || []
-            entities.hashtags.forEach((tag) => {
-              hashtags.push(tag.text)
-            })
-            chirp.hashtags = hashtags
-
-            let imageUrl = ''
-            try {
-              imageUrl = tweet.entities.media[0]['media_url']
-            } catch (e) {
-
-            }
-            chirp.image_url = imageUrl
-
-            let profileImageUrl = ''
-            try {
-              profileImageUrl = tweet.user['profile_image_url']
-            } catch (e) {
-
-            }
-
-            chirp.profile_image_url = profileImageUrl
-            chirp.user_name = tweet.user['name']
-            chirp.screen_name = tweet.user['screen_name']
-
-            selectedTweets.push(chirp)
-          }
         }
-      )
+        chirp.image_url = imageUrl
+
+        let profileImageUrl = ''
+        try {
+          profileImageUrl = tweet.user['profile_image_url']
+        } catch (e) {
+
+        }
+
+        chirp.profile_image_url = profileImageUrl
+        chirp.user_name = tweet.user['name']
+        chirp.screen_name = tweet.user['screen_name']
+
+        selectedTweets.push(chirp)
+      }
     }
-    // TODO: Something to do with closure
-    // This will log the selected tweets,...
-    console.log(selectedTweets)
-  })
-  // ...but this will not
-  console.log(selectedTweets)
-  return { selected_tweets: selectedTweets }
+  )
+  return selectedTweets
+}
+
+const handleError = (error) => {
+  console.log(`Something went wrong fetching tweets for the query '${query}': ` + error.json)
 }
 
 const Twitter = {search}

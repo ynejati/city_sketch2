@@ -13,15 +13,16 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('public/build'))
 }
 
-app.get ('/api/city', (req, res) => {
+app.get('/api/city', (req, res) => {
   const param = req.query.q
   if (!param) {
     res.json({
       error: 'Missing required parameter `q`',
     })
   } else {
-    const tweets = Twitter.search(param)
-    res.json(tweets)
+    Twitter.search(param).then((tweets) => {
+      res.json(tweets)
+    })
   }
 })
 

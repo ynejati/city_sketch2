@@ -28,7 +28,7 @@ class App extends React.Component {
     })
 
     Client.search(city, (tweets) => {
-      console.log(tweets)
+      console.log('App.js:' + tweets)
       this.setState({
         data: {
           twitter: tweets,

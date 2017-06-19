@@ -17,8 +17,8 @@ class App extends React.Component {
   state = {
     city: '',
     data: {
-      twitter: {},
-      weather: {},
+      twitter: [],
+      weather: [],
     }
   }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
     })
 
     Client.search(city, (tweets) => {
-      console.log('App.js:' + tweets)
+      console.log(tweets)
       this.setState({
         data: {
           twitter: tweets,
@@ -51,12 +51,12 @@ class App extends React.Component {
             <Col xs={6} md={4}>
               <InstagramPanel />
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={12} md={6}>
               <TwitterPanel tweets={this.state.data.twitter} />
             </Col>
-            <Col xs={6} md={4}>
-              <SnapPanel />
-            </Col>
+            {/*<Col xs={6} md={4}>*/}
+              {/*<SnapPanel />*/}
+            {/*</Col>*/}
           </Row>
           <Row>
             <Col xs={6} md={6}>

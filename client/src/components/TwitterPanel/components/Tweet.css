@@ -11,17 +11,18 @@ blockquote.twitter-tweet {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     margin: 10px 5px;
     padding: 0 16px 16px 16px;
-    max-width: 468px;
+    width: 528px
 }
 
 blockquote.twitter-tweet p {
     font-size: 16px;
     font-weight: normal;
     line-height: 20px;
+    padding-top: 8px;
 }
 
 blockquote.twitter-tweet a {
-    color: inherit;
+    color: #2b7bb9;
     font-weight: normal;
     text-decoration: none;
     outline: 0 none;
@@ -29,5 +30,29 @@ blockquote.twitter-tweet a {
 
 blockquote.twitter-tweet a:hover,
 blockquote.twitter-tweet a:focus {
-    text-decoration: underline;
+    color: #30b5ff;
 }
+
+.tweet-header {
+    padding-top: 10px;
+    white-space: nowrap;
+}
+
+.image {
+    width: 494px;
+    height: auto;
+    border-radius: 1%;
+}
+
+.tweet-date-time {
+    color: #5e5e5e;
+}
+
+#user-name {
+    font-weight: 700;
+}
+
+#screen-name {
+    font-weight: 400;
+}
+

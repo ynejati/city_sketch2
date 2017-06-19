@@ -7,9 +7,14 @@ const twitter = new TwitterAPI({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 })
 
-const search = (query) => {
+const search = async(query) => {
   // TODO import { List } from 'immutable'
-  return twitter.get('search/tweets', {q: query}).then(processTweets).catch(err => console.log(err))
+  let res
+  try {
+    res = await twitter.get('search/tweets', {q: query})
+  } catch (err) {
+  }
+  return processTweets(res)
 }
 
 const processTweets = (tweets) => {

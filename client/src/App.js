@@ -6,7 +6,6 @@ import s from './App.css'
 import CurrentCityDisplay from './components/CurrentCityDisplay/CurrentCityDisplay'
 import InstagramPanel from './components/InstagramPanel/InstagramPanel'
 import NewsPanel from './components/NewsPanel/NewsPanel'
-import SnapPanel from './components/SnapPanel/SnapPanel'
 import TwitterPanel from './components/TwitterPanel/TwitterPanel'
 import WeatherPanel from './components/WeatherPanel/WeatherPanel'
 import Client from './Client'
@@ -18,7 +17,7 @@ class App extends React.Component {
     city: '',
     data: {
       twitter: [],
-      weather: [],
+      weather: {},
     }
   }
 
@@ -27,11 +26,11 @@ class App extends React.Component {
       city: city,
     })
 
-    Client.search(city, (tweets) => {
-      console.log(tweets)
+    Client.search(city, (cityData) => {
       this.setState({
         data: {
-          twitter: tweets,
+          twitter: cityData[0],
+          weather: cityData[1],
         }
       })
     })

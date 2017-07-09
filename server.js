@@ -4,6 +4,7 @@
 const express = require('express')
 const fs = require('fs')
 import Twitter from './data/Twitter/Twitter'
+import Weather from './data/Weather/Weather'
 
 const app = express()
 
@@ -20,9 +21,11 @@ app.get('/api/city', (req, res) => {
       error: 'Missing required parameter `q`',
     })
   } else {
-    Twitter.search(param).then((tweets) => {
-      res.json(tweets)
-    })
+    Promise.all([Twitter.search(param), Weather.getWeather(param)])
+      .then(([tweets, weather]) => {
+         res.json([tweets, weather])
+      })
+      .catch(err => console.log(err))
   }
 })
 

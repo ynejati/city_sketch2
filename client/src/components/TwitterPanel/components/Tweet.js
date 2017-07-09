@@ -3,7 +3,7 @@
  */
 import moment from 'moment'
 import React from 'react'
-import { Grid, Row, Col, Image } from 'react-bootstrap'
+import { Row, Col, Image } from 'react-bootstrap'
 import './Tweet.css'
 
 class Tweet extends React.Component {
@@ -39,11 +39,11 @@ class Tweet extends React.Component {
           </Row>
         </div>
         <p>{this.props.text}</p>
-        <p>{this.props.hashTags.map((tag) => (
-          <a target="_blank" href={`https://twitter.com/hashtag/${tag}?src=hash`}>#{tag} </a>
+        <p>{this.props.hashTags.map((tag, index) => (
+          <a key={index} target="_blank" href={`https://twitter.com/hashtag/${tag}?src=hash`}>#{tag} </a>
         ))}</p>
         <time className="tweet-date-time">{this.processDate(this.props.date)}</time>
-        <img className="image" src={this.props.imageUrl} />
+        <img role="presentation" className="image" src={this.props.imageUrl} />
       </blockquote>
     )
   }

@@ -16,8 +16,9 @@ class TwitterPanel extends React.Component {
           <Panel header='Twitter Panel'>
             <div className="twitter-timeline">
               {
-                tweets.map((cheep) => (
+                tweets.map((cheep, index) => (
                   <Tweet
+                    key={index}
                     userName={cheep['user_name']}
                     screenName={cheep['screen_name']}
                     text={cheep['text']}

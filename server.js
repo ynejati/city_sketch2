@@ -23,7 +23,7 @@ app.get('/api/city', (req, res) => {
   } else {
     Promise.all([Twitter.search(param), Weather.getWeather(param)])
       .then(([tweets, weather]) => {
-         res.json([tweets, weather])
+         res.send([tweets, weather])
       })
       .catch(err => console.log(err))
   }

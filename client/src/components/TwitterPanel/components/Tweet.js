@@ -1,6 +1,3 @@
-/**
- * Created by you on 5/26/17.
- */
 import moment from 'moment'
 import React from 'react'
 import { Row, Col, Image } from 'react-bootstrap'
@@ -12,6 +9,7 @@ class Tweet extends React.Component {
 
   }
 
+  // TODO: move to Helpers
   processDate = (date) => {
     const newDate = moment(date)
     return newDate.format('MMMM Do YYYY, h:mm:ss a')
@@ -19,7 +17,16 @@ class Tweet extends React.Component {
 
   render() {
 
-    const screenNameLink = 'https://twitter.com/' + this.props.screenName
+    const screenNameLink = `https://twitter.com/${this.props.screenName}`
+    const displayImage = () => {
+      if (this.props.imageUrl) {
+        return (
+          <img role="presentation" className="image" src={this.props.imageUrl} />
+        )
+      } else {
+        return ''
+      }
+    }
 
     return (
       <blockquote className="twitter-tweet">
@@ -43,7 +50,7 @@ class Tweet extends React.Component {
           <a key={index} target="_blank" href={`https://twitter.com/hashtag/${tag}?src=hash`}>#{tag} </a>
         ))}</p>
         <time className="tweet-date-time">{this.processDate(this.props.date)}</time>
-        <img role="presentation" className="image" src={this.props.imageUrl} />
+        {displayImage}
       </blockquote>
     )
   }

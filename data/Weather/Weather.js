@@ -2,15 +2,14 @@
 import fetch from 'node-fetch'
 const apiKey=process.env.WEATHER_KEY
 
-
 const getWeather = async (query) => {
 
-	// TODO should use city IDs
+	// TODO should use city IDs, this is just a test
 	const cityID = '5128581'
 
 	let res
 	try {
-		res = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityID}&APPID=${apiKey}`)
+		res = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityID}&units=imperial&APPID=${apiKey}`)
 		return res.json()
 	} catch (err) {
 		console.error(`Something went wrong fetching weather: ${err}`)

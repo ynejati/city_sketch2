@@ -1,17 +1,10 @@
 import TwitterAPI from 'twitter'
 
-// const twitter = new TwitterAPI({
-//   consumer_key: process.env.TWITTER_CONSUMER_KEY,
-//   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-//   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-//   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-// })
-
 const twitter = new TwitterAPI({
-  consumer_key: 'vC9ym3xkm3qaqvUXXSMZxX0X6',
-  consumer_secret: 'R2ESMK48v1YdzVZUaZjeIqU8eeugOchvTixmyYSuF1DEDUwWzU',
-  access_token_key: '838980743720132609-y1qavS20ZKkBPaiocnQI3UUHoGUMsGQ',
-  access_token_secret: 'BzPt4kl7DLhuc8KklTaD8VoNIX0SEiXDxQeD2Jnv6kUKD',
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 })
 
 const search = async(query) => {

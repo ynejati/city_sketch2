@@ -1,7 +1,3 @@
-/**
- * Created by you on 3/3/17.
- */
-
 import React from 'react'
 import { Navbar, Button, FormControl, FormGroup, Glyphicon } from 'react-bootstrap'
 import headerLogo from './city_sketch2_navbar_logo.png'
@@ -13,18 +9,18 @@ class Header extends React.Component {
   }
 
   handleInputChange = (event) => {
-    this.setState({city: event.target.value})
+    this.setState({ city: event.target.value })
   }
 
   onSearchSubmit = (event) => {
     const city = this.state.city
     this.props.onSearchFormSubmit(city)
-    this.setState({city: ''})
+    this.setState({ city: '' })
     event.target.reset()
     event.preventDefault()
   }
 
-  render () {
+  render() {
     return (
       <div className='App-header'>
         <Navbar className={s.navbar}>
@@ -39,7 +35,7 @@ class Header extends React.Component {
               <Navbar.Form pullRight>
                 <FormGroup controlId='search'>
                   <FormControl onChange={this.handleInputChange} autoComplete='on' type='text'
-                               placeholder='Search cities....' />
+                    placeholder='Search cities....' />
                 </FormGroup>
                 {' '}
                 <Button bsStyle='success' type='submit'>

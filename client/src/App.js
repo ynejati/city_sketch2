@@ -1,14 +1,17 @@
 import React from 'react'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
 import { Grid, Col, Row } from 'react-bootstrap'
-import s from './App.css'
+import PropTypes from 'prop-types'
+
+import Client from './Client'
 import CurrentCityDisplay from './components/CurrentCityDisplay/CurrentCityDisplay'
-import InstagramPanel from './components/InstagramPanel/InstagramPanel'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import MeetupPanel from './components/MeetupPanel/MeetupPanel'
 import NewsPanel from './components/NewsPanel/NewsPanel'
 import TwitterPanel from './components/TwitterPanel/TwitterPanel'
 import WeatherPanel from './components/WeatherPanel/WeatherPanel'
-import Client from './Client'
+
+import s from './App.css'
 
 
 class App extends React.Component {
@@ -17,8 +20,31 @@ class App extends React.Component {
     city: '',
     data: {
       twitter: [],
-      weather: {},
-    }
+      weather: {
+        name: '',
+        weather: [
+          {
+            description: '',
+            main: '',
+          },
+        ],
+        main: {
+          temp: '',
+          humidity: '',
+          'temp_min': '',
+          'temp_max': '',
+        },
+        dt: '',
+        wind: {
+          deg: '',
+          speed: '',
+        },
+        sys: {
+          sunrise: '',
+          sunset: '',
+        },
+      },
+    },
   }
 
   handleSearchFormSubmit = (city) => {
@@ -42,27 +68,21 @@ class App extends React.Component {
         <Header onSearchFormSubmit={this.handleSearchFormSubmit} />
         <Grid className={s.App_grid}>
           <Row>
+            <Col xs={12}>
+              <WeatherPanel weather={this.state.data.weather} />
+            </Col>
+          </Row>
+          <Row>
             <Col xs={4} xsOffset={8}>
               <CurrentCityDisplay city={this.state.city} />
             </Col>
           </Row>
           <Row>
-            <Col xs={6} md={4}>
-              <InstagramPanel />
-            </Col>
             <Col xs={12} md={6}>
               <TwitterPanel tweets={this.state.data.twitter} />
             </Col>
-            {/*<Col xs={6} md={4}>*/}
-              {/*<SnapPanel />*/}
-            {/*</Col>*/}
-          </Row>
-          <Row>
-            <Col xs={6} md={6}>
-              <NewsPanel />
-            </Col>
-            <Col xs={6} md={6}>
-              <WeatherPanel />
+            <Col xs={6} md={4}>
+              <MeetupPanel />
             </Col>
           </Row>
         </Grid>

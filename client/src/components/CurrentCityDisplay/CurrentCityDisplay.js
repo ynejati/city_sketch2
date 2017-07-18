@@ -1,11 +1,7 @@
-/**
- * Created by you on 3/5/17.
- */
-
-import React  from 'react'
+import React from 'react'
 
 class CurrentCityDisplay extends React.Component {
-  render () {
+  render() {
     return (
       <div>
         <h2>{this.props.city}</h2>

@@ -14,7 +14,7 @@ class TwitterPanel extends React.Component {
       <div className="twitter-panel">
         <Accordion>
           <Panel header='Twitter Panel'>
-            <div className="twitter-timeline">
+            <div className="content-inner">
               {
                 tweets.map((cheep, index) => (
                   <Tweet

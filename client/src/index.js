@@ -12,11 +12,11 @@ ReactDOM.render(
   rootEL
 )
 
-if(module.hot){
+if (module.hot) {
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default
     ReactDOM.render(
-      <NextApp/>,
+      <NextApp />,
       rootEL
     )
   })

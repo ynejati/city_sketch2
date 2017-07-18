@@ -1,0 +1,13 @@
+.content {
+	padding: 25px;
+}
+
+.content-inner {
+	min-height: 150px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+#conditions {
+	padding-top: 45px;
+}

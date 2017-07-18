@@ -22,5 +22,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = {search}
+const Client = { search }
 export default Client

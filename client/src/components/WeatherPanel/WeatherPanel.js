@@ -15,8 +15,6 @@ import thunderstorm from './thunderstorm.png'
 
 class WeatherPanel extends React.Component {
 
-  // TODO: move to Helpers and make immutable
-  // Parse depending on time zone
   processDate = (time) => {
     const newTime = moment.unix(time)
     return newTime.format('hh:mm a')
@@ -64,64 +62,55 @@ class WeatherPanel extends React.Component {
         return snow
       case 'mist':
         return mist
+      case 'overcast clouds':
+        return scatteredClouds
       default:
         return ''
     }
   }
 
-  render() {
-    const weather = this.props.weather
+  renderWeather = (weather) => {
 
-    if (weather.weather[0].main !== '') {
+    if (Object.keys(weather).length > 0 && weather.constructor === Object) {
       return (
-        <Accordion>
-          <Panel header='Weather Panel'>
-            <div className="content">
-              <Grid>
-                <Row>
-                  <Col sm={2}>
-                    <div className="content-inner">
-                      <h2>{weather.name}</h2>
-                      <h4>{this.processDate(weather.dt)}</h4>
-                    </div>
-                  </Col>
-                  <Col sm={6} md={3}>
-                    <div className="content-inner">
-                      <img src={this.processWeatherIcon(weather.weather[0].description)}></img>
-                    </div>
-                  </Col>
-                  <Col sm={6} md={3}>
-                    <div className="content-inner">
-                      <h3>{weather.weather[0].main}</h3>
-                      <h2>{weather.main.temp} &deg;F</h2>
-                      <p>Max: {weather.main['temp_max']} &deg;F | Min: {weather.main['temp_min']} &deg;F</p>
-                    </div>
-                  </Col>
-                  <Col sm={6} md={3}>
-                    <div className="content-inner">
-                      <div id="conditions">
-                        <p>Humidity: {weather.main.humidity}%</p>
-                        <p>Wind: {weather.wind.speed} mph {this.processWindDirection(weather.wind.deg)}</p>
-                        <p>Sunrise: {this.processDate(weather.sys.sunrise)} | Sunset: {this.processDate(weather.sys.sunset)}</p>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-          </Panel>
-        </Accordion>
-      )
-    } else {
-      return (
-        <Accordion>
-          <Panel header='Weather Panel'>
-            <div className="content">
-            </div>
-          </Panel>
-        </Accordion>
+        <div className="inner-content">
+          <Grid>
+            <Row>
+              <Col sm={4} md={6}>
+                <h2>{weather.city}</h2>
+                <h4>{this.processDate(weather.dt)}</h4>
+                <img id='weather-icon' src={this.processWeatherIcon(weather.description)}></img>
+              </Col>
+              <Col sm={4} md={6}>
+                <h3>{weather.condition}</h3>
+                <h2>{weather.temp} &deg;F</h2>
+                <p>Max: {weather['temp_max']} &deg;F | Min: {weather['temp_min']} &deg;F</p>
+                <p>Humidity: {weather.humidity}%</p>
+                <p>Wind: {weather['wind_speed']} mph {this.processWindDirection(weather['wind_dir'])}</p>
+                <p>Sunrise: {this.processDate(weather.sunrise)} | Sunset: {this.processDate(weather.sunset)}</p>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
       )
     }
+  }
+
+  render() {
+
+    const {
+      weather,
+    } = this.props
+
+    return (
+      <Accordion>
+        <Panel header='Weather Panel'>
+          <div className="content">
+            {this.renderWeather(weather)}
+          </div>
+        </Panel>
+      </Accordion>
+    )
   }
 }
 

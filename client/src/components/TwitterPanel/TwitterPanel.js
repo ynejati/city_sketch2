@@ -1,6 +1,3 @@
-/**
- * Created by you on 3/4/17.
- */
 import React from 'react'
 import { Accordion, Panel } from 'react-bootstrap'
 import Tweet from './components/Tweet'

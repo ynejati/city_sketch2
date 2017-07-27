@@ -16,80 +16,59 @@ import s from './App.css'
 
 class App extends React.Component {
 
-  state = {
-    city: '',
-    data: {
-      twitter: [],
-      weather: {
-        name: '',
-        weather: [
-          {
-            description: '',
-            main: '',
-          },
-        ],
-        main: {
-          temp: '',
-          humidity: '',
-          'temp_min': '',
-          'temp_max': '',
-        },
-        dt: '',
-        wind: {
-          deg: '',
-          speed: '',
-        },
-        sys: {
-          sunrise: '',
-          sunset: '',
-        },
-      },
-    },
-  }
+	state = {
+		city: '',
+		data: {
+			twitter: [],
+			weather: {},
+			meetup: [],
+		},
+	}
 
-  handleSearchFormSubmit = (city) => {
-    this.setState({
-      city: city,
-    })
+	handleSearchFormSubmit = (city) => {
+		this.setState({
+			city: city,
+		})
 
-    Client.search(city, (cityData) => {
-      this.setState({
-        data: {
-          twitter: cityData[0],
-          weather: cityData[1],
-        }
-      })
-    })
-  }
+		Client.search(city, (cityData) => {
+			this.setState({
+				data: {
+					twitter: cityData[0],
+					weather: cityData[1],
+					meetup: cityData[2],
+				}
+			})
+		})
+	}
 
-  render() {
-    return (
-      <div className={s.App}>
-        <Header onSearchFormSubmit={this.handleSearchFormSubmit} />
-        <Grid className={s.App_grid}>
-          <Row>
-            <Col xs={12}>
-              <WeatherPanel weather={this.state.data.weather} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4} xsOffset={8}>
-              <CurrentCityDisplay city={this.state.city} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} md={6}>
-              <TwitterPanel tweets={this.state.data.twitter} />
-            </Col>
-            <Col xs={6} md={4}>
-              <MeetupPanel />
-            </Col>
-          </Row>
-        </Grid>
-        <Footer />
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div className={s.App}>
+				<Header onSearchFormSubmit={this.handleSearchFormSubmit} />
+				<Grid className={s.App_grid}>
+					<Row>
+						<Col xs={12} xsOffset={4} mdOffset={6} lgOffset={8}>
+							<CurrentCityDisplay city={this.state.city} />
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={12}>
+							<WeatherPanel weather={this.state.data.weather} />
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={12} md={6}>
+							<TwitterPanel tweets={this.state.data.twitter} />
+						</Col>
+						<Col xs={12} md={6}>
+							<MeetupPanel events={this.state.data.meetup} />
+						</Col>
+					</Row>
+				</Grid>
+				<Footer />
+			</div>
+		)
+	}
 }
 
 export default App

@@ -6,10 +6,10 @@ import './Tweet.css'
 class Tweet extends React.Component {
 
   processText = (text) => {
-
+    //TODO: process text for links, user tags, and hashtags
   }
 
-  // TODO: move to Helpers
+  // TODO: move to helpers
   processDate = (date) => {
     const newDate = moment(date)
     return newDate.format('MMMM Do YYYY, h:mm:ss a')

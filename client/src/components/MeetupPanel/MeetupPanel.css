@@ -1,3 +1,9 @@
 .content {
 	
 }
+
+.content-inner {
+    height: 500px;
+    overflow-y: scroll;
+    align-content: center;
+}

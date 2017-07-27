@@ -1,10 +1,9 @@
-/**
- * Created by you on 3/13/17.
- */
 const express = require('express')
 const fs = require('fs')
 import Twitter from './data/Twitter/Twitter'
 import Weather from './data/Weather/Weather'
+import Meetup from './data/Meetup/Meetup'
+import { getGeoCoordinates, getCityID } from './data/helpers/dataHelpers'
 
 const app = express()
 
@@ -21,9 +20,17 @@ app.get('/api/city', (req, res) => {
       error: 'Missing required parameter `q`',
     })
   } else {
-    Promise.all([Twitter.search(param), Weather.getWeather(param)])
-      .then(([tweets, weather]) => {
-         res.send([tweets, weather])
+
+    const {
+      lat,
+      lon,
+    } = getGeoCoordinates(param)
+
+    const cityID = getCityID(param)
+
+    Promise.all([Twitter.fetchTweets(lat, lon), Weather.fetchWeather(cityID), Meetup.fetchEvents(lat, lon)])
+      .then(([tweets, weather, events]) => {
+        res.send([tweets, weather, events])
       })
       .catch(err => console.log(err))
   }

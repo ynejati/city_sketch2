@@ -1,3 +1,19 @@
 .meetup-event {
-    border-top: 1px solid rgba(0,0,0,.12)
+    border-top: 1px solid rgba(0,0,0,.12);
+}
+
+.meetup-event:hover {
+    background-color: rgba(230,230,230,230);
+}
+
+.event-time-container {
+ text-align: center;
+ padding-top: 50px;
+ padding-left: 20px;
+}
+
+#event-time {
+    color: rgb(109, 109, 109);
+    font-weight: 500;
+    font-size: 18px;
 }

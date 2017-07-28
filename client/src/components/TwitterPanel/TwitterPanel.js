@@ -6,11 +6,15 @@ import './TwitterPanel.css'
 class TwitterPanel extends React.Component {
 
   render() {
-    const tweets = this.props.tweets
+
+    const {
+      tweets
+    } = this.props
+
     return (
       <div className="twitter-panel">
         <Accordion>
-          <Panel header='Twitter Panel'>
+          <Panel header='Twitter Activity'>
             <div className="content-inner">
               {
                 tweets.map((cheep, index) => (

@@ -11,7 +11,7 @@ blockquote.twitter-tweet {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     margin: 10px 5px;
     padding: 0 16px 16px 16px;
-    width: 528px
+    width: auto;
 }
 
 blockquote.twitter-tweet p {
@@ -48,11 +48,19 @@ blockquote.twitter-tweet a:focus {
     color: #5e5e5e;
 }
 
+.profile-image-container {
+    
+}
+
+.tweet-userinfo-cell {
+    padding-left: 10px;
+}
+
 #user-name {
-    font-weight: 700;
+    font-weight: 900;
 }
 
 #screen-name {
-    font-weight: 400;
+    font-weight: 600;
 }
 

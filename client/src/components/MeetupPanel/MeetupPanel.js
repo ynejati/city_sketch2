@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import { Accordion, Panel } from 'react-bootstrap'
 import Event from './components/Event'
-import s from './MeetupPanel.css'
+import './MeetupPanel.css'
 
 class MeetupPanel extends Component {
   render() {
+    
     const {
       events
     } = this.props
+
     if (Object.keys(events).length !== 0 && events.constructor !== Object) {
       return (
         <div className='meetup-panel'>
           <Accordion>
-            <Panel header='Meetup Panel'>
+            <Panel header='Meetup Events'>
               <div className='content-inner'>
                 {
                   events.map((event, index) => (
@@ -42,7 +44,7 @@ class MeetupPanel extends Component {
       return (
         <div className='meetup-panel'>
           <Accordion>
-            <Panel header='Meetup Panel'>
+            <Panel header='Meetup Events'>
               <div className='content-inner'>
               </div>
             </Panel>

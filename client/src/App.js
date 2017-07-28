@@ -1,13 +1,11 @@
 import React from 'react'
 import { Grid, Col, Row } from 'react-bootstrap'
-import PropTypes from 'prop-types'
 
 import Client from './Client'
 import CurrentCityDisplay from './components/CurrentCityDisplay/CurrentCityDisplay'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import MeetupPanel from './components/MeetupPanel/MeetupPanel'
-import NewsPanel from './components/NewsPanel/NewsPanel'
 import TwitterPanel from './components/TwitterPanel/TwitterPanel'
 import WeatherPanel from './components/WeatherPanel/WeatherPanel'
 

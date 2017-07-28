@@ -1,7 +1,7 @@
 import React from 'react'
 import { Accordion, Panel, Grid, Col, Row } from 'react-bootstrap'
 import moment from 'moment'
-import s from './WeatherPanel.css'
+import './WeatherPanel.css'
 
 import brokenClouds from './brokenClouds.png'
 import clearSky from './clearSky.png'
@@ -79,7 +79,7 @@ class WeatherPanel extends React.Component {
               <Col sm={4} md={6}>
                 <h2>{weather.city}</h2>
                 <h4>{this.processDate(weather.dt)}</h4>
-                <img id='weather-icon' src={this.processWeatherIcon(weather.description)}></img>
+                <img id='weather-icon' role='presentation' src={this.processWeatherIcon(weather.description)}></img>
               </Col>
               <Col sm={4} md={6}>
                 <h3>{weather.condition}</h3>
@@ -104,7 +104,7 @@ class WeatherPanel extends React.Component {
 
     return (
       <Accordion>
-        <Panel header='Weather Panel'>
+        <Panel header='Latest Weather'>
           <div className="content">
             {this.renderWeather(weather)}
           </div>

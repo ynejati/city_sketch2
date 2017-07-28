@@ -1,42 +1,41 @@
 import React from 'react'
-import { Grid, Col, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
+import moment from 'moment'
 import './Event.css'
 
 class Event extends React.Component {
 
+  processEventDate = (time, utcOffset) => {
+    const day = moment(time).utcOffset(utcOffset)
+    return day.format('MMMM DD')
+  }
+
   render() {
 
     const {
-      eventLink,
-      time,
-      utcOffset,
-      duration,
+      dateTime,
       description,
       rsvpCount,
-      waitlistCount,
       groupName,
       groupWho,
       location,
-      lat,
-      long
+      utcOffset,
+      onClick
     } = this.props
 
     return (
       <div className="meetup-event">
         <Row>
-          <Col sm={2}>
-            <p>{time}</p>
-            <p>{utcOffset}</p>
+          <Col xs={4} sm={4}>
+            <div className='event-time-container'>
+              <text id='event-time'>{this.processEventDate(dateTime, utcOffset)}</text>
+            </div>
           </Col>
-          <Col sm={8}>
-            <h4>{groupName}</h4>
-            <p>{groupWho}</p>
-            <p>{description}</p>
-            <p>{rsvpCount}</p>
-            <p>{waitlistCount}</p>
+          <Col xs={8} sm={8}>
+            <h5 id='event-groupname'>{groupName}</h5>
+            <h4 id='event-description'>{description}</h4>
             <p>{location}</p>
-            <p>{lat}</p>
-            <p>{long}</p>
+            <p>{rsvpCount} {groupWho} going</p>
           </Col>
         </Row>
       </div>

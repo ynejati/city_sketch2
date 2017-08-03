@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import { checkStatus, parseJSON } from '../helpers/apiHelpers'
+
 const apiKey = process.env.WEATHER_KEY
 
 const fetchWeather = async (cityID) => {

@@ -7,7 +7,7 @@ const fetchEvents = async (lat, lon) => {
 
 	let res
 	try {
-		res = await fetch(`https://api.meetup.com/find/events?key=${apiKey}&sign=true&photo-host=public&lon=${lon}&text=*&lat=${lat}`)
+		res = await fetch(`https://api.meetup.com/find/events?key=${apiKey}&sign=true&photo-host=public&lon=${lon}&text=*&lat=${lat}&radius=25`)
 			.then(checkStatus)
 			.then(parseJSON)
 	} catch (err) {

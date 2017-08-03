@@ -20,7 +20,6 @@ class Event extends React.Component {
       groupWho,
       location,
       utcOffset,
-      onClick
     } = this.props
 
     return (

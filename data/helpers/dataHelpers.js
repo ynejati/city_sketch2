@@ -1,9 +1,8 @@
-
 export const getGeoCoordinates = (city) => {
 
 	// Todo: temp for testing purposes
-	const lat = '37.781157'
-	const lon = '-122.398720'
+	const lat = '34.366661'
+	const lon = '-118.200912'
 
 	return {
 		lat,
@@ -13,6 +12,9 @@ export const getGeoCoordinates = (city) => {
 
 export const getCityID = (city) => {
 
+	const id = '5368381'
 	// TODO: temp for testing purposes
-	return '5391997'
+	return {
+		id,
+	}
 }

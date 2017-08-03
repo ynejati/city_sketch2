@@ -21,14 +21,27 @@ app.get('/api/city', (req, res) => {
     })
   } else {
 
+    // const {
+    //   coord,
+    //   name,
+    //   id,
+    // } = cityList.find((city, param) => city.name === param)
+
+    // const {
+    //   lat,
+    //   lon,
+    // } = coord
+
     const {
       lat,
       lon,
     } = getGeoCoordinates(param)
 
-    const cityID = getCityID(param)
+    const {
+      id,
+    } = getCityID(param)
 
-    Promise.all([Twitter.fetchTweets(lat, lon), Weather.fetchWeather(cityID), Meetup.fetchEvents(lat, lon)])
+    Promise.all([Twitter.fetchTweets(lat, lon), Weather.fetchWeather(id), Meetup.fetchEvents(lat, lon)])
       .then(([tweets, weather, events]) => {
         res.send([tweets, weather, events])
       })
